@@ -3,24 +3,27 @@
  * 
  * @param mainUrl - The base URL to which subdomains, paths, and query parameters will be added.
  * @param options - Optional object containing:
- *  - subDomains - An array of subdomains to be added to the base URL.
- *  - paths - An array of path components to be appended to the base URL.
+ *  - port - An string or number to be added to mainUrl.
+ *  - subDomains - An array of subdomains to be added before the mainUrl.
+ *  - paths - An array of path components to be appended to end of the mainUrl.
  *  - queryParams - An object representing query parameters to be appended to the URL.
  * 
  * @returns The constructed URL as a string, including subdomains, paths, and query parameters.
  * 
  * @example
  * const url = linksmith("https://example.com", {
+ *     port: 3000,
  *     subDomains: ["api", "v1"],
  *     paths: ["users", "123"],
  *     queryParams: { filter: "active", sort: "name" }
  * });
  * console.log(url);
- * // Output: "https://api.v1.example.com/users/123?filter=active&sort=name"
+ * // Output: "https://api.v1.example.com:3000/users/123?filter=active&sort=name"
  */
 export default function linksmith(
     mainUrl: string,
     options?: {
+        port?: string | number,
         subDomains?: string[],
         paths?: string[],
         queryParams?: { [key: string]: string }
@@ -30,11 +33,17 @@ export default function linksmith(
     // Ensure the base URL is not empty.
     if (mainUrl == "") throw new Error("Main URL is empty");
 
-    // Make sure the base URL ends with a "/".
-    mainUrl = mainUrl.endsWith('/') ? mainUrl : `${mainUrl}/`;
 
     // Check if options are provided and proceed with modifying the URL.
     if (options != undefined) {
+
+        // Add port if exsits and make sure the base URL ends with a "/".
+        if (options.port != undefined) {
+            mainUrl = mainUrl.endsWith('/') ? `${mainUrl.replace("/","")}:${options.port}/` : `${mainUrl}:${options.port}/`;
+        } else {
+            mainUrl = mainUrl.endsWith('/') ? mainUrl : `${mainUrl}/`;
+        }
+
 
         // If subDomains are provided, append them to the base URL.
         if (options.subDomains != undefined) {

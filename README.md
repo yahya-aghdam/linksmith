@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.0.1-orange)
+![Version](https://img.shields.io/badge/Version-1.1.0-orange)
 
 # linksmith
 
@@ -14,13 +14,12 @@ Linksmith is a flexible and powerful TypeScript-based URL builder for Node.js an
   - [Example](#example)
   - [License](#license)
 
-
 ## Key Features
 
-+ **TypeScript Support**: Built with TypeScript, providing type safety and autocompletion.
-+ **Subdomain Management**: Easily add or modify subdomains in your URL.
-+ **Path Handling**: Concatenate paths with automatic slash normalization.
-+ **Query Parameters**: Effortlessly add query parameters.
+- **TypeScript Support**: Built with TypeScript, providing type safety and autocompletion.
+- **Subdomain Management**: Easily add or modify subdomains in your URL.
+- **Path Handling**: Concatenate paths with automatic slash normalization.
+- **Query Parameters**: Effortlessly add query parameters.
 
 ## Installation
 
@@ -41,11 +40,12 @@ It's super easy! this function get `mainURL` and `options` and it returns URL as
 
 ## Options table
 
-| Name        |     Type     |          Explanation |
-| :---------- | :----------: | -------------------: |
-| subDomains  | string array |   without any dot[.] |
-| paths       | string array | without any slash[/] |
-| queryParams |    object    |                    - |
+| Name        |       Type       |          Explanation |
+| :---------- | :--------------: | -------------------: |
+| port        | string or number |                    - |
+| subDomains  |   string array   |   without any dot[.] |
+| paths       |   string array   | without any slash[/] |
+| queryParams |      object      |                    - |
 
 ## Example
 
@@ -56,6 +56,7 @@ import linksmith from 'linksmith'
 
 const mainUrl = "https://example.com"
 const options = {
+    port: 3000,
     subDomains: ["api", "v1"],
     paths: ["users", "123"],
     queryParams: { filter: "active", sort: "name" }
@@ -64,7 +65,7 @@ const options = {
 const url = linksmith(mainUrl, options);
 
 console.log(url);
-// Output: "https://api.v1.example.com/users/123?filter=active&sort=name"
+// Output: "https://api.v1.example.com:3000/users/123?filter=active&sort=name"
  
 
 ```

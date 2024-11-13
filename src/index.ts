@@ -37,12 +37,11 @@ export default function linksmith(
     // Check if options are provided and proceed with modifying the URL.
     if (options != undefined) {
 
-        // Add port if exsits and make sure the base URL ends with a "/".
-        if (options.port != undefined) {
-            mainUrl = mainUrl.endsWith('/') ? `${mainUrl.replace("/","")}:${options.port}/` : `${mainUrl}:${options.port}/`;
-        } else {
-            mainUrl = mainUrl.endsWith('/') ? mainUrl : `${mainUrl}/`;
-        }
+        // Delete slash from mainUrl
+        mainUrl = mainUrl.endsWith('/') ? mainUrl.replace(/\/$/, "") : mainUrl
+
+        // Add port if exsits 
+        mainUrl = options.port != undefined ? `${mainUrl}:${options.port}` : mainUrl
 
 
         // If subDomains are provided, append them to the base URL.

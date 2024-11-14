@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.1.0-orange)
+![Version](https://img.shields.io/badge/Version-1.2.0-orange)
 
 # linksmith
 
@@ -20,6 +20,7 @@ Linksmith is a flexible and powerful TypeScript-based URL builder for Node.js an
 - **Subdomain Management**: Easily add or modify subdomains in your URL.
 - **Path Handling**: Concatenate paths with automatic slash normalization.
 - **Query Parameters**: Effortlessly add query parameters.
+- **Port Management**: Add port of your URL.
 
 ## Installation
 

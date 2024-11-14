@@ -33,9 +33,29 @@ export default function linksmith(
     // Ensure the base URL is not empty.
     if (mainUrl == "") throw new Error("Main URL is empty");
 
-
     // Check if options are provided and proceed with modifying the URL.
     if (options != undefined) {
+
+        const www = "www."
+        let hasWww = false
+        let protocol = ""
+        const protocolArr = ["http://", "https://"]
+
+        // Store protocol
+        protocolArr.forEach(item => {
+            if (mainUrl.startsWith(item)) {
+                const regex = new RegExp(`^${item}`)
+                mainUrl.replace(regex, "")
+                protocol = item
+            }
+        })
+
+        // Handling www
+        if (mainUrl.startsWith(www)) {
+            const regex = new RegExp(www)
+            mainUrl.replace(regex, "")
+            hasWww = true
+        }
 
         // Delete slash from mainUrl
         mainUrl = mainUrl.endsWith('/') ? mainUrl.replace(/\/$/, "") : mainUrl
@@ -61,8 +81,11 @@ export default function linksmith(
             mainUrl = `${mainUrl}/${path}`;
         }
 
+        // March all elements
+        const combinedUrl = hasWww ? protocol + www + mainUrl : protocol + mainUrl
+
         // Create a new URL object from the modified mainUrl.
-        const url = new URL(mainUrl);
+        const url = new URL(combinedUrl);
 
         // If queryParams are provided, append them to the URL.
         if (options.queryParams != undefined) {

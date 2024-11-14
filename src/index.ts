@@ -44,21 +44,19 @@ export default function linksmith(
         // Store protocol
         protocolArr.forEach(item => {
             if (mainUrl.startsWith(item)) {
-                const regex = new RegExp(`^${item}`)
-                mainUrl.replace(regex, "")
+                mainUrl = mainUrl.replace(item, "")
                 protocol = item
             }
         })
-
+        
         // Handling www
         if (mainUrl.startsWith(www)) {
-            const regex = new RegExp(www)
-            mainUrl.replace(regex, "")
+            mainUrl = mainUrl.replace(www, "")
             hasWww = true
         }
 
         // Delete slash from mainUrl
-        mainUrl = mainUrl.endsWith('/') ? mainUrl.replace(/\/$/, "") : mainUrl
+        mainUrl = mainUrl.endsWith('/') ? mainUrl.replace('/', "") : mainUrl
 
         // Add port if exsits 
         mainUrl = options.port != undefined ? `${mainUrl}:${options.port}` : mainUrl

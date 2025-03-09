@@ -46,15 +46,17 @@ export default function linksmith(
 
         // Handle protocol
         const protocolSplitedUrl = mainUrl.split(protocolSeparator)
-        if (protocolSplitedUrl.length >= 1) {
+
+        if (protocolSplitedUrl.length > 1) {
             protocol = protocolSplitedUrl[0] + protocolSeparator
             mainUrl = protocolSplitedUrl[1]
+        } else {
+            mainUrl = protocolSplitedUrl[0]
         }
-        
 
         // Handle ip url with subdomain
         isIpUrl = isIP(mainUrl)
-        console.log("🚀 ~ isIpUrl:", isIpUrl)
+
         if (isIpUrl && options.subDomains != undefined) {
             throw new Error("You can't add subdomain to an ip address")
         }

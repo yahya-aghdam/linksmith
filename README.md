@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.3.0-orange)
+![Version](https://img.shields.io/badge/Version-1.3.1-orange)
 
 # linksmith
 

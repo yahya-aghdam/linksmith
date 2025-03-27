@@ -1,7 +1,12 @@
-![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.3.2-orange)
-
 # linksmith
+
+<p align="center">
+  <img src="./link.png" alt="multipay logo" width="150" height="150" style="display: block; margin: 30 auto" />
+</p>
+
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Version](https://img.shields.io/badge/Version-1.3.3-orange)
+
 
 Linksmith is a flexible and powerful TypeScript-based URL builder for Node.js and frontend projects. Designed for developers who need to construct clean and efficient URLs, linksmith allows seamless addition of subdomains, paths, and query parameters with a simple, intuitive API. Linksmith handles edge cases like double slashes, missing query values, and dynamic subdomain additions, making it ideal for RESTful APIs, microservices, and other projects requiring dynamic URL generation. Linksmith is your all-in-one solution for URL construction in TypeScript.
 

@@ -1,12 +1,12 @@
 import linksmith from './index';
 
 const mainUrl = "https://example.com";
-const mainUrlWithoutPorotocol = "example.com";
+const mainUrlWithoutProtocol = "example.com";
 const mainIP = "http://192.168.0.1";
 const port = 3000;
 const subdomains = ["api", "v1"];
 const paths = ["users", "123"];
-const queryParams = { filter: "active", sort: "name" };
+const queryParams = { filter: "active", sort: "name", page: 1 , limit: 10 , async: true };
 
 describe('linksmith', () => {
     it('should construct URL with subdomains, paths, and query parameters', () => {
@@ -16,7 +16,7 @@ describe('linksmith', () => {
             paths: paths,
             queryParams: queryParams
         });
-        expect(url).toBe("https://api.v1.example.com:3000/users/123?filter=active&sort=name");
+        expect(url).toBe("https://api.v1.example.com:3000/users/123?filter=active&sort=name&page=1&limit=10&async=true");
     });
 
     it('should throw an error if main URL is empty', () => {
@@ -29,8 +29,8 @@ describe('linksmith', () => {
     });
 
     it('should handle URL without protocol', () => {
-        const url = linksmith(mainUrlWithoutPorotocol);
-        expect(url).toBe(mainUrlWithoutPorotocol);
+        const url = linksmith(mainUrlWithoutProtocol);
+        expect(url).toBe(mainUrlWithoutProtocol);
     });
 
     it('should handle URL with port only', () => {
@@ -50,7 +50,7 @@ describe('linksmith', () => {
 
     it('should handle URL with query parameters only', () => {
         const url = linksmith(mainUrl, { queryParams: queryParams });
-        expect(url).toBe("https://example.com/?filter=active&sort=name");
+        expect(url).toBe("https://example.com/?filter=active&sort=name&page=1&limit=10&async=true");
     });
 
     it('should throw an error if subdomain is added to an IP address', () => {

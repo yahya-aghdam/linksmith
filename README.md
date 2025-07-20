@@ -65,13 +65,19 @@ const options = {
     port: 3000,
     subDomains: ["api", "v1"],
     paths: ["users", "123"],
-    queryParams: { filter: "active", sort: "name" }
+    queryParams: { 
+      filter: "active",
+      sort: "name",
+      page: 1,
+      limit: 10,
+      async: true
+    }
 }
 
 const url = linksmith(mainUrl, options);
 
 console.log(url);
-// Output: "https://api.v1.example.com:3000/users/123?filter=active&sort=name"
+// Output: "https://api.v1.example.com:3000/users/123?filter=active&sort=name&page=1&limit=10&async=true"
  
 
 ```

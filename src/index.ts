@@ -26,7 +26,7 @@ export default function linksmith(
         port?: string | number,
         subDomains?: string[],
         paths?: string[],
-        queryParams?: { [key: string]: string }
+        queryParams?: { [key: string]: string | number | boolean }
     }
 ): string {
 
@@ -45,13 +45,13 @@ export default function linksmith(
 
 
         // Handle protocol
-        const protocolSplitedUrl = mainUrl.split(protocolSeparator)
+        const protocolSplittedUrl = mainUrl.split(protocolSeparator)
 
-        if (protocolSplitedUrl.length > 1) {
-            protocol = protocolSplitedUrl[0] + protocolSeparator
-            mainUrl = protocolSplitedUrl[1]
+        if (protocolSplittedUrl.length > 1) {
+            protocol = protocolSplittedUrl[0] + protocolSeparator
+            mainUrl = protocolSplittedUrl[1]
         } else {
-            mainUrl = protocolSplitedUrl[0]
+            mainUrl = protocolSplittedUrl[0]
         }
 
         // Handle ip url with subdomain
@@ -71,7 +71,7 @@ export default function linksmith(
         // Delete slash from mainUrl
         mainUrl = mainUrl.endsWith('/') ? mainUrl.replace('/', "") : mainUrl
 
-        // Add port if exsits 
+        // Add port if exists 
         mainUrl = options.port != undefined ? `${mainUrl}:${options.port}` : mainUrl
 
 
@@ -101,7 +101,7 @@ export default function linksmith(
         // If queryParams are provided, append them to the URL.
         if (options.queryParams != undefined) {
             Object.entries(options.queryParams).forEach(([key, value]) => {
-                url.searchParams.append(key, value);
+                url.searchParams.append(key, value as string);
             });
         }
 
